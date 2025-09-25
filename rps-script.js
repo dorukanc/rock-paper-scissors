@@ -50,18 +50,4 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-function playGame(){
-    // get choices
-    let humanChoice, computerChoice, result; // init choices
-    // run the game for 5 rounds
-    for(let i=0; i<5; i++){
-        // get new choices in every iter
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
-        // play w/ new choices, update result
-        result = playRound(humanChoice, computerChoice);
-    }
-    return result; // return end result
-}
-
-console.log(playGame()); // print the game result
+// remove the logic that plays the game exactly five times
