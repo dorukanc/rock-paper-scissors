@@ -50,4 +50,21 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-// remove the logic that plays the game exactly five times
+let actions = document.querySelector('#actions');
+
+actions.addEventListener('click', (event) => {
+    let target = event.target;
+
+switch(target.id){
+    case 'rock':
+        console.log(playRound('rock', getComputerChoice()));
+        break;
+    case 'paper':
+        console.log(playRound('paper', getComputerChoice()));
+        break;
+    case 'scissors':
+       console.log(playRound('scissors', getComputerChoice()));
+        break;
+}
+
+})
