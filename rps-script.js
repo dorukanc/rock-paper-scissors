@@ -29,8 +29,9 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerChoice){
-    // only increment if choices different
-    if(humanChoice !== computerChoice){
+    
+    if(computerScore < 5 && humanScore < 5){
+        if(humanChoice !== computerChoice){
         // check for every case, increment scores
         switch(humanChoice){
             case 'rock':
@@ -43,27 +44,48 @@ function playRound(humanChoice, computerChoice){
                 computerChoice === 'rock' ? computerScore += 1 : humanScore += 1;
                 break;   
         }
-        return `Human Score: ${humanScore}, Computer Score ${computerScore}`;
-
+        // add the logic to finish the game, when one of the players reach score 5
+        if(humanScore === 5 && humanScore > computerScore){
+            return `Game over you win! Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+        }else if (computerScore === 5 && humanScore < computerScore){
+            return `Game over computer win! Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+        }else{
+            return `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+        }
+        
+        }else{
+            return `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+        }
     }else{
-        return `Human Score: ${humanScore}, Computer Score ${computerScore}`;
+        return 'Refresh the page for a new game!'
     }
+    
 }
 
-let actions = document.querySelector('#actions');
+const actions = document.querySelector('#actions');
+const showResult = document.querySelector('#result');
+
+let result = '';
 
 actions.addEventListener('click', (event) => {
+    
     let target = event.target;
 
 switch(target.id){
     case 'rock':
-        console.log(playRound('rock', getComputerChoice()));
+        result = playRound('rock', getComputerChoice());
+        console.log(result);
+        showResult.textContent = result;
         break;
     case 'paper':
-        console.log(playRound('paper', getComputerChoice()));
+        result = playRound('paper', getComputerChoice());
+        console.log(result);
+        showResult.textContent = result;
         break;
     case 'scissors':
-       console.log(playRound('scissors', getComputerChoice()));
+        result = playRound('scissors', getComputerChoice());
+        console.log(result);
+        showResult.textContent = result;
         break;
 }
 
